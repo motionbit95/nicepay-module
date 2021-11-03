@@ -4,8 +4,8 @@ const uuid = require("uuid").v4;
 const router = express.Router();
 const crypto = require('crypto');
 
-const clientId = '클라이언트키 입력';
-const secretKey = '시크릿키 입력';
+const clientId = 'S2_af4543a0be4d49a98122e01ec2059a56';
+const secretKey = '9eb85607103646da9f9c02b128f2e5ee';
 const key = secretKey.substring(0, 32);
 const iv = secretKey.substring(0, 16);
 
@@ -22,7 +22,7 @@ router.post("/regist", function (req, res) {
                   + "&idNo=" + req.body.idNo 
                   + "&cardPw="+ req.body.cardPw
   
-  got.post("https://api.nicepay.co.kr/v1/subscribe/regist", {
+  got.post("https://sandbox-api.nicepay.co.kr/v1/subscribe/regist", {
       headers: {
         Authorization: 
           "Basic " + Buffer.from(clientId + ":" + secretKey).toString("base64"), 
@@ -39,6 +39,8 @@ router.post("/regist", function (req, res) {
       console.log(response.body);
       // 비즈니스 로직 구현
 
+      // billing(response.body.bid)
+
       res.render("response", {
         resultMsg: response.body.resultMsg
       });
@@ -51,7 +53,7 @@ router.post("/regist", function (req, res) {
 
 
 var billing = ((bid) => {
-  got.post("https://api.nicepay.co.kr/v1/subscribe/"+bid+"/payments", {
+  got.post("https://sandbox-api.nicepay.co.kr/v1/subscribe/"+bid+"/payments", {
     headers: {
       Authorization: 
         "Basic " + Buffer.from(clientId + ":" + secretKey).toString("base64"), 
@@ -79,7 +81,7 @@ var billing = ((bid) => {
 
 
 var expire = ((bid) => {
-  got.post("https://api.nicepay.co.kr/v1/subscribe/"+bid+"/expire", {
+  got.post("https://sandbox-api.nicepay.co.kr/v1/subscribe/"+bid+"/expire", {
     headers: {
       Authorization: 
         "Basic " + Buffer.from(clientId + ":" + secretKey).toString("base64"), 
