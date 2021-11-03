@@ -3,8 +3,8 @@ const got = require("got");
 const uuid = require("uuid").v4;
 const router = express.Router();
 
-const clientId = '클라이언트키 입력';
-const secretKey = '시크릿키 입력';
+const clientId = 'S1_6eaa0db1afdc41f3becb770878d67d25';
+const secretKey = 'e80d068e400649a6ada66777fa350d40';
 
 router.get("/", function (req, res) {
   res.render("index", {
@@ -30,7 +30,7 @@ router.post("/clientAuth", function (req, res) {
 
 
 router.post("/cancel", function (req, res) {
-  got.post("https://api.nicepay.co.kr/v1/payments/"+ req.body.tid +"/cancel" , {
+  got.post("https://sandbox-api.nicepay.co.kr/v1/payments/"+ req.body.tid +"/cancel" , {
       headers: {
         Authorization: 
           "Basic " + Buffer.from(clientId + ":" + secretKey).toString("base64"), 
