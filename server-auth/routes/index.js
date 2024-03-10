@@ -66,9 +66,9 @@ router.post("/cancel", function (req, res) {
           "Content-Type": "application/json",
         },
         json: {
-          amount: req.body.amount,
+          amount: req.body.pay_price,
           reason: "test",
-          orderId: uuid(),
+          orderId: req.body.order_id,
         },
         responseType: "json",
       }
