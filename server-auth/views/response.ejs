@@ -12,9 +12,9 @@
       var receivedData = JSON.parse(decodedData); // 페이지 이동
 
       // 데이터를 가져와 URL에 추가
-      var targetUrl = "http://localhost:3000/result?data=" + decodedData;
-      // var targetUrl =
-      //   "https://redswitch.netlify.app/result?data=" + decodedData;
+      // var targetUrl = "http://localhost:3000/result?data=" + decodedData;
+      var targetUrl =
+        "https://redswitch.netlify.app/result?data=" + decodedData;
 
       window.location.replace(targetUrl);
       console.log(receivedData);
