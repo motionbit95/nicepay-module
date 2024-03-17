@@ -53,6 +53,7 @@ router.post("/serverAuth", function (req, res) {
 });
 
 router.post("/cancel", function (req, res) {
+  console.log(req.body);
   got
     .post(
       "https://sandbox-api.nicepay.co.kr/v1/payments/" +
@@ -77,15 +78,15 @@ router.post("/cancel", function (req, res) {
       console.log(response.body);
       // 결제 비즈니스 로직 구현
 
-      res.render("response", {
-        resultMsg: response.body.resultMsg,
-      });
+      // res.render("response", {
+      //   resultMsg: response.body.resultMsg,
+      // });
+
+      res.send(response.body);
     })
     .catch(function (error) {
       console.log(error);
     });
-
-  console.log(req.body);
 });
 
 router.post("/hook", function (req, res) {
